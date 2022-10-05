@@ -80,7 +80,7 @@
     </configuration>
     <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="coffee.Start" />
-      <module name="3.6.x" />
+      <module name="3.6" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="coffee.*" />

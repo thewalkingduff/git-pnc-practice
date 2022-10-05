@@ -86,7 +86,7 @@ public class Start {
 				System.out.println("Please enter the order to delete: ");
 				String orderToDelete = userInput.nextLine();
 				coffeeShop.deleteFirstInstanceOfOrder(orderToDelete);
-
+				break;
 			default:
 				System.out.println("Please select 1-7:  \n");
 			}
