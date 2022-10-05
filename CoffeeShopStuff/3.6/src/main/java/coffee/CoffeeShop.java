@@ -46,7 +46,7 @@ public class CoffeeShop {
 			// for now we just return name
 			return "Order added!";
 		} else {
-			return "This item is currently unavailable!";
+			return "Sorry, we dont have "+ name + "!";
 		}
 	}
 

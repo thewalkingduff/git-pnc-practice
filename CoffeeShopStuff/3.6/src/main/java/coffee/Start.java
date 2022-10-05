@@ -37,28 +37,28 @@ public class Start {
         Scanner userInput = new Scanner(System.in);
 
         boolean activeMenu = true;
+        MenuItem[] menuList = coffeeShop.getMenu();
+        System.out.println("\t Welcome to BVD's coffee shop! \n");
+        System.out.println("\t Here are our menu items! \n");
+        System.out.println("\t ------------------------------------------------");
+        for (MenuItem item : menuList){
+            System.out.println("\t" + item.getItem());
 
-        System.out.println("Welcome to BVD's coffee shop! \n");
-
+        }
+        System.out.println("\t ------------------------------------------------");
+        System.out.println("\n \n");
         while(activeMenu){
 
-            MenuItem[] menuList = coffeeShop.getMenu();
-            System.out.println("\t Here are our menu items! \n");
-            System.out.println("\t ------------------------------------------------");
-            for (MenuItem item : menuList){
-                System.out.println("\t" + item.getItem());
-
-            }
-            System.out.println("\t ------------------------------------------------");
-            System.out.println("\n \n");
-            System.out.println("What would you like to do? (enter the number)");
-            System.out.println("1) order item");
-            System.out.println("2) fulfillOrder");
-            System.out.println("3) List orders");
-            System.out.println("4) print total");
-            System.out.println("5) list drinks");
-            System.out.println("6) list food");
-            System.out.println("7) exit");
+            
+            
+            System.out.println("\t What would you like to do? (enter the number)\n");
+            System.out.println("\t\t 1) order item");
+            System.out.println("\t\t 2) fulfillOrder");
+            System.out.println("\t\t 3) List orders");
+            System.out.println("\t\t 4) print total");
+            System.out.println("\t\t 5) list drinks");
+            System.out.println("\t\t 6) list food");
+            System.out.println("\t\t 7) exit");
 
             int menuSelection = userInput.nextInt(); userInput.nextLine();
 
@@ -66,8 +66,8 @@ public class Start {
                 case 1:
                     System.out.println("enter menu item below! \n");
                     String menuItem = userInput.nextLine();
-                    coffeeShop.addOrder(menuItem);
-                    System.out.println("On it!!!!! \n \n");
+                    String orderResult = coffeeShop.addOrder(menuItem);
+                    System.out.println(orderResult);
                     break;
 
                 case 2:
@@ -113,7 +113,9 @@ public class Start {
                     System.out.println("Goodbyeeee :)");
                     activeMenu = false;
                     break;
-
+                 
+                default:
+                	 System.out.println("Please select 1-7:  \n");
             }
 
 
