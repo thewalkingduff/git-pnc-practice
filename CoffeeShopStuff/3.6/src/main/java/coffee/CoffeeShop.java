@@ -1,6 +1,8 @@
 package coffee;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class CoffeeShop {
 
@@ -78,6 +80,63 @@ public class CoffeeShop {
 		}
 
 		return totalPrice;
+	}
+
+	public void deleteFirstInstanceOfOrder(String requestedDelete){
+
+		int firstOccurance = -1;
+
+		for (int i = 0; i < orders.length; i++) {
+			if(orders[i].equalsIgnoreCase(requestedDelete)){
+				firstOccurance = i;
+				break;
+			}
+		}
+
+		if(firstOccurance==-1){
+			System.out.println("not found!");
+
+		} else{
+
+			// Create another array of size one less
+			String[] anotherArray = new String[orders.length - 1];
+
+			// Copy the elements except the index
+			// from original array to the other array
+			for (int i = 0, k = 0; i < orders.length; i++) {
+
+				// if the index is
+				// the removal element index
+				if (i == firstOccurance) {
+					continue;
+				}
+
+				// if the index is not
+				// the removal element index
+				anotherArray[k++] = orders[i];
+			}
+
+			orders = anotherArray;
+			System.out.println("deleted!");
+
+
+
+		}
+
+
+
+//		List tempArrayList = Arrays.asList(orders);
+//
+//		for(int i = 0 ; i < tempArrayList.size(); i++){
+//			if(tempArrayList.get(i).equals(requestedDelete)){
+//				int orderIndex = i;
+//				tempArrayList.remove(orderIndex);
+//			}
+//		}
+//
+//		String[] returnArray = (String[]) tempArrayList.toArray(new String[0]);
+//		System.out.println("deleted" + requestedDelete + "!");
+
 	}
 
 	public String cheapestItem() {

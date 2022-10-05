@@ -27,6 +27,13 @@ public class Start {
 	// BONUS dont forget some error checking ... if a user enters a letter instead
 	// of a number gracefully handle that
 
+
+
+
+
+
+
+
 	private CoffeeShop coffeeShop = new CoffeeShop();
 	private Scanner userInput = new Scanner(System.in);
 
@@ -75,6 +82,10 @@ public class Start {
 				System.out.println("Goodbyeeee :)");
 				activeMenu = false;
 				break;
+			case 8:
+				System.out.println("Please enter the order to delete: ");
+				String orderToDelete = userInput.nextLine();
+				coffeeShop.deleteFirstInstanceOfOrder(orderToDelete);
 
 			default:
 				System.out.println("Please select 1-7:  \n");
@@ -172,6 +183,7 @@ public class Start {
 		System.out.println("\t\t 5) list drinks");
 		System.out.println("\t\t 6) list food");
 		System.out.println("\t\t 7) exit");
+		System.out.println("\t\t 8) delete order");
 
 		int menuSelection = userInput.nextInt();
 		userInput.nextLine();
