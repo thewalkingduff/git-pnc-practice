@@ -51,7 +51,7 @@ public class Start {
             }
             System.out.println("\t ------------------------------------------------");
             System.out.println("\n \n");
-            System.out.println("What would you like to do?");
+            System.out.println("What would you like to do? (enter the number)");
             System.out.println("1) order item");
             System.out.println("2) fulfillOrder");
             System.out.println("3) List orders");
