@@ -2,29 +2,33 @@ package coffee;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class CoffeeShop {
 
 	private String name = "Eric's coffee shop";
-	private String[] orders = new String[0];
+	private List<String> orders = new ArrayList<>();
 	
-	private MenuItem[] menu = new MenuItem[] {
-	  		new MenuItem("orange juice", "drink", 2.13), 
-	  		new MenuItem("lemonade", "drink", 0.85), 
-	  		new MenuItem("cranberry juice", "drink", 3.36), 
-		    new MenuItem("pineapple juice", "drink", 1.89), 
-		    new MenuItem("lemon iced tea", "drink", 1.28), 
-		    new MenuItem("apple iced tea", "drink", 1.28), 
-		    new MenuItem("vanilla chai latte", "drink", 2.48), 
-		    new MenuItem("hot chocolate", "drink", 0.99), 
-		    new MenuItem("iced coffee", "drink", 1.12), 
-		    new MenuItem("tuna sandwich", "food", 0.95), 
-		    new MenuItem("ham and cheese sandwich", "food", 1.35), 
-		    new MenuItem("bacon and egg", "food", 1.15), 
-		    new MenuItem("steak", "food", 3.28), 
-		    new MenuItem("hamburger", "food", 1.05), 
-		    new MenuItem("cinnamon roll", "food", 1.05) };
+	private List<MenuItem> menu = new ArrayList<MenuItem>(
+
+		List.of(new MenuItem("orange juice", "drink", 2.13),
+				new MenuItem("lemonade", "drink", 0.85),
+				new MenuItem("cranberry juice", "drink", 3.36),
+				new MenuItem("pineapple juice", "drink", 1.89),
+				new MenuItem("lemon iced tea", "drink", 1.28),
+				new MenuItem("apple iced tea", "drink", 1.28),
+				new MenuItem("vanilla chai latte", "drink", 2.48),
+				new MenuItem("hot chocolate", "drink", 0.99),
+				new MenuItem("iced coffee", "drink", 1.12),
+				new MenuItem("tuna sandwich", "food", 0.95),
+				new MenuItem("ham and cheese sandwich", "food", 1.35),
+				new MenuItem("bacon and egg", "food", 1.15),
+				new MenuItem("steak", "food", 3.28),
+				new MenuItem("hamburger", "food", 1.05),
+				new MenuItem("cinnamon roll", "food", 1.05)
+				)
+	);
+
 
 
 	public String addOrder(String name) {
@@ -38,33 +42,26 @@ public class CoffeeShop {
 		}
 
 		if (found) {
-			// we can use the arrays library to make a copy of our
-			// orders array and increase the length by 1.
-			orders = Arrays.copyOf(orders, orders.length + 1);
+			orders.add(name);
 
-			// assign the item name to last element of the array
-			orders[orders.length - 1] = name;
-
-			// for now we just return name
 			return "Order added!";
 		} else {
-			return "Sorry, we dont have "+ name + "!";
+			return "Sorry, we dont have " + name + "!";
 		}
 	}
 
 	public String fulfillOrder() {
-		if (orders.length == 0) {
+		if (orders.size() == 0) {
 			return "All orders have been fulfilled!";
 		} else {
-			// this is essentially a pop function
-			String item = orders[0];
-			orders = Arrays.copyOfRange(orders, 1, orders.length);
+			String item = orders.get(0);
+			orders.remove(0);
 			return "The " + item + " is ready!";
 		}
 	}
 
 	// this is called an accessor method
-	public String[] listOrders() {
+	public List<String> listOrders() {
 		return orders;
 	}
 
@@ -84,63 +81,18 @@ public class CoffeeShop {
 
 	public void deleteFirstInstanceOfOrder(String requestedDelete){
 
-		int firstOccurance = -1;
+		int firstOccurance = orders.indexOf(requestedDelete);
 
-		for (int i = 0; i < orders.length; i++) {
-			if(orders[i].equalsIgnoreCase(requestedDelete)){
-				firstOccurance = i;
-				break;
-			}
-		}
-
-		if(firstOccurance==-1){
-			System.out.println("not found!");
-
-		} else{
-
-			// Create another array of size one less
-			String[] anotherArray = new String[orders.length - 1];
-
-			// Copy the elements except the index
-			// from original array to the other array
-			for (int i = 0, k = 0; i < orders.length; i++) {
-
-				// if the index is
-				// the removal element index
-				if (i == firstOccurance) {
-					continue;
-				}
-
-				// if the index is not
-				// the removal element index
-				anotherArray[k++] = orders[i];
-			}
-
-			orders = anotherArray;
+		if(orders.contains(requestedDelete)){
+			orders.remove(firstOccurance);
 			System.out.println("deleted!");
-
-
-
+		} else {
+			System.out.println("not found!");
 		}
-
-
-
-//		List tempArrayList = Arrays.asList(orders);
-//
-//		for(int i = 0 ; i < tempArrayList.size(); i++){
-//			if(tempArrayList.get(i).equals(requestedDelete)){
-//				int orderIndex = i;
-//				tempArrayList.remove(orderIndex);
-//			}
-//		}
-//
-//		String[] returnArray = (String[]) tempArrayList.toArray(new String[0]);
-//		System.out.println("deleted" + requestedDelete + "!");
-
 	}
 
 	public String cheapestItem() {
-		if (menu.length == 0) {
+		if (menu.size() == 0) {
 			// temporary return null
 			// will fix this code as we learn more by
 			// reading requirements
@@ -152,8 +104,8 @@ public class CoffeeShop {
 		// with no risk of error
 		// we will use item 0 to initialize our search results
 		// TODO : replace these 2 lines to use a MenuItem object
-		double minPrice = menu[0].getPrice();
-		String itemName = menu[0].getItem();
+		double minPrice = menu.get(0).getPrice();
+		String itemName = menu.get(0).getItem();
 
 		for (MenuItem menuItem : menu) {
 			if (menuItem.getPrice() < minPrice) {
@@ -188,7 +140,7 @@ public class CoffeeShop {
 		return result;
 	}
 
-	public MenuItem[] getMenu() {
+	public List<MenuItem> getMenu() {
 		return menu;
 	}
 }
