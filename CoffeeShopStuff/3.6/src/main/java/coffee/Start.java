@@ -1,6 +1,5 @@
 package coffee;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,7 +19,7 @@ public class Start {
 		// initiate scanner
 
 		boolean activeMenu = true;
-		welcome();
+		displayMenu();
 		while (activeMenu) {
 
 			int menuSelection = showMenu();
@@ -60,6 +59,8 @@ public class Start {
 				String orderToDelete = userInput.nextLine();
 				coffeeShop.deleteFirstInstanceOfOrder(orderToDelete);
 				break;
+			case 9:
+				displayMenu();
 			default:
 				System.out.println("Please select 1-7:  \n");
 			}
@@ -102,7 +103,7 @@ public class Start {
 		System.out.println("\n \n");
 	}
 
-	private void welcome() {
+	private void displayMenu() {
 		List<MenuItem> menuList = coffeeShop.getMenu();
 		System.out.println("\t Welcome to BVD's coffee shop! \n");
 		System.out.println("\t Here are our menu items! \n");
@@ -125,6 +126,7 @@ public class Start {
 		System.out.println("\t\t 6) list food");
 		System.out.println("\t\t 7) exit");
 		System.out.println("\t\t 8) delete order");
+		System.out.println("\t\t 9) show menu");
 
 		int menuSelection = userInput.nextInt();
 		userInput.nextLine();
