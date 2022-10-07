@@ -108,6 +108,10 @@ public class Start {
 		System.out.println("\t Welcome to BVD's coffee shop! \n");
 		System.out.println("\t Here are our menu items! \n");
 		System.out.println("\t ------------------------------------------------");
+
+		//sorts list by menu name
+		menuList.sort((MenuItem m1, MenuItem m2) -> m1.getItem().compareTo(m2.getItem()));
+
 		for (MenuItem item : menuList) {
 			System.out.println("\t" + item.getItem());
 
